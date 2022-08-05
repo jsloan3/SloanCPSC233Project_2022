@@ -9,7 +9,7 @@ public class AlbertaTax extends Tax {
 		
 	}
 	
-	private double calculateAfterTaxIncome() {
+	public double calculateTaxDue() {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();
 		double totalTaxes = 0;
@@ -37,7 +37,7 @@ public class AlbertaTax extends Tax {
 		if (btIncome <= currentBracket) {
 			totalTaxes += btIncome * 0.10;
 			}
-		return totalTaxes;
+		return totalTaxes + super.calculateTaxDue();
 	}
 	
 
