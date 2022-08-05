@@ -10,8 +10,8 @@ public class Person {
 	private String name;
 	private Tax taxes;
 	
-	private HBox fieldContainer;
 	private TextField nameTextfield;
+	private TextField incomeTextfield;
 
 	public Person() {
 		
@@ -21,11 +21,11 @@ public class Person {
 		HBox currentHBox = new HBox();
 		Label nameLabel = new Label();
 		Label incomeLabel = new Label();
-		TextField incomeTextfield = new TextField(); 
-		TextField nameTextfield = new TextField();
-		nameLabel.setText("  Name:  ");
-		incomeTextfield.setText("   Annual Income:   ");
-		currentHBox.getChildren().addAll(nameLabel,nameTextfield,incomeLabel, incomeTextfield);
+		this.setIncomeTextfield(new TextField());
+		this.setNameTextfield(new TextField());
+		nameLabel.setText("   Name:   ");
+		incomeLabel.setText("   Annual Income:  ");
+		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield());
 		return currentHBox;
 	}
 	
@@ -38,11 +38,27 @@ public class Person {
 		}
 	}
 
-	private String getName() {
+	public String getName() {
 		return name;
 	}
 
-	private void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
+	}
+
+	public TextField getIncomeTextfield() {
+		return incomeTextfield;
+	}
+
+	private void setIncomeTextfield(TextField incomeTextfield) {
+		this.incomeTextfield = incomeTextfield;
+	}
+
+	public TextField getNameTextfield() {
+		return nameTextfield;
+	}
+
+	private void setNameTextfield(TextField nameTextfield) {
+		this.nameTextfield = nameTextfield;
 	}
 }
