@@ -42,7 +42,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </ChoiceBox>
-            <Button fx:id="doneButton" mnemonicParsing="false" onAction="#getFamilyMembers" text="Done">
+            <Button mnemonicParsing="false" onAction="#getFamilyMembers" text="Done">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -59,7 +59,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </Button>
-      <Label textFill="RED">
+      <Label textFill="RED" fx:id="errorLabel">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
