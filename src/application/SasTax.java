@@ -9,6 +9,12 @@ public class SasTax extends Tax {
 		
 	}
 	
+	/**
+	 * calculateTaxDue() but for Sask. tax brackets.
+	 * See calculateTaxDue() within the AlbertaTax class.
+	 * @return Provincial Sask. taxes + Federal taxes due as a double
+	 */
+	
 	public double calculateTaxDue() {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();

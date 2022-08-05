@@ -9,6 +9,12 @@ public class BCTax extends Tax {
 		
 	}
 	
+	/**
+	 * calculateTaxDue() but for BC tax brackets.
+	 * See calculateTaxDue() within the AlbertaTax class.
+	 * @return Provincial BC taxes + Federal taxes due as a double
+	 */
+	
 	public double calculateTaxDue() {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();

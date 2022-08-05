@@ -8,7 +8,14 @@ public class AlbertaTax extends Tax {
 	public AlbertaTax() {
 		
 	}
-	
+	/**
+	 * Uses the same calculations from the equivalent method from AlbertaTax's parent, Tax,
+	 * but with different tax brackets. Furthermore, this will return the provincial taxes due
+	 * as well as the federal taxes due by calling on the parent method using the super keyword.
+	 * 
+	 * @see calculateTaxDue() in Tax
+	 * @return Provincial Alberta taxes + Federal taxes due as a double
+	 */
 	public double calculateTaxDue() {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();
@@ -37,6 +44,7 @@ public class AlbertaTax extends Tax {
 		if (btIncome <= currentBracket) {
 			totalTaxes += btIncome * 0.10;
 			}
+		// Return our provincial taxes due, but also call upon the Parent method to get our federal taxes due.
 		return totalTaxes + super.calculateTaxDue();
 	}
 	
