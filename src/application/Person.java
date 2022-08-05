@@ -14,7 +14,7 @@ public class Person {
 	private TextField incomeTextfield;
 
 	public Person() {
-		
+
 	}
 	
 	public HBox createHBoxField() {
@@ -30,7 +30,6 @@ public class Person {
 	}
 	
 	public String processInput() {
-		System.out.print("apple");
 		String nameStr;
 		String incomeStr;
 		if (this.getNameTextfield() != null && this.getIncomeTextfield() != null
@@ -65,22 +64,28 @@ public class Person {
 		
 		this.setName(nameStr);
 		this.setBeforeTaxIncome(Double.parseDouble(incomeStr));
+		this.getTaxes().setBeforeTaxIncome(Double.parseDouble(incomeStr));
 		
-		System.out.print(this.getName());
-		System.out.print(this.getBeforeTaxIncome());
+		
+		
 		
 		return "";
 		
 	}
 
 	
-	private int setTaxProvince(String residence) {
-		if (residence.equals("Alberta")) {
-			this.taxes = new AlbertaTax();
+	public int setTaxProvince(String residence) {
+		if (residence == "Alberta") {
+			this.setTaxes(new AlbertaTax());
 			return 1;
-		} else {
-			return 0;
 		}
+		if (residence.equals("British Columbia")) {
+			this.taxes = new BCTax();
+		}
+		if (residence.equals("Saskatchewan")) {
+			this.taxes = new SasTax();
+		}
+		return 0;
 	}
 
 	public String getName() {
@@ -113,5 +118,13 @@ public class Person {
 
 	private void setBeforeTaxIncome(double beforeTaxIncome) {
 		this.beforeTaxIncome = beforeTaxIncome;
+	}
+
+	public Tax getTaxes() {
+		return taxes;
+	}
+	
+	public void setTaxes(Tax taxes) {
+		this.taxes = taxes;
 	}
 }
