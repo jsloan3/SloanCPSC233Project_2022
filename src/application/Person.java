@@ -1,13 +1,26 @@
 package application;
 
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+
 public class Person {
 	
 	private double beforeTaxIncome;
 	private String name;
 	private Tax taxes;
+	
+	private HBox fieldContainer;
+	private TextField nameTextfield;
 
-	public Person(String personName) {
-		this.setName(personName);
+	public Person() {
+		
+	}
+	
+	private HBox createHBoxField() {
+		HBox currentHBox = new HBox();
+		TextField currentTextfield = new TextField();
+		currentHBox.getChildren().add(currentTextfield);
+		return currentHBox;
 	}
 	
 	private int setTaxProvince(String residence) {
