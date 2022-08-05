@@ -10,9 +10,12 @@ public class Person {
 		this.setName(personName);
 	}
 	
-	private void setTaxProvince(String residence) {
+	private int setTaxProvince(String residence) {
 		if (residence.equals("Alberta")) {
 			this.taxes = new AlbertaTax();
+			return 1;
+		} else {
+			return 0;
 		}
 	}
 
