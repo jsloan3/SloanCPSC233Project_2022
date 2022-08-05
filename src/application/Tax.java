@@ -14,39 +14,43 @@ public class Tax {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();
 		double totalTaxes = 0;
-			if (btIncome > 216511) {
-				totalTaxes += (btIncome - 216511) * 0.33;
-				btIncome = 216511;
+		double currentBracket = 216511;
+		if (btIncome > currentBracket) {
+			totalTaxes += (btIncome - currentBracket) * 0.33;
+			btIncome = currentBracket;
+		}
+		currentBracket = 151978;
+		if (btIncome > currentBracket) {
+			totalTaxes += (btIncome - currentBracket) * 0.29;
+			btIncome = currentBracket;
+		}
+		currentBracket = 98040;
+			if (btIncome > currentBracket) {
+			totalTaxes += (btIncome - currentBracket) * 0.26;
+			btIncome = currentBracket;
 			}
-			if (btIncome > 151978) {
-				totalTaxes += (btIncome - 151978) * 0.29;
-				btIncome = 151978;
+		currentBracket = 49020;
+		if (btIncome > currentBracket) {
+			totalTaxes += (btIncome - currentBracket) * 0.205;
+			btIncome = currentBracket;
 			}
-			if (btIncome > 98040) {
-				totalTaxes += (btIncome - 98040) * 0.26;
-				btIncome = 98040;
-			}
-			if (btIncome > 49020) {
-				totalTaxes += (btIncome - 49020) * 0.205;
-				btIncome = 49020;
-			}
-			if (btIncome >= 49020) {
-				totalTaxes += btIncome * 0.29;
-				btIncome = 151978;
+
+		if (btIncome <= currentBracket) {
+			totalTaxes += btIncome * 0.15;
 			}
 		return totalTaxes;
 	}
 	
-	private double getBeforeTaxIncome() {
+	public double getBeforeTaxIncome() {
 		return beforeTaxIncome;
 	}
-	private void setBeforeTaxIncome(double beforeTaxIncome) {
+	public void setBeforeTaxIncome(double beforeTaxIncome) {
 		this.beforeTaxIncome = beforeTaxIncome;
 	}
-	private double getAfterTaxIncome() {
+	public double getAfterTaxIncome() {
 		return afterTaxIncome;
 	}
-	private void setAfterTaxIncome(double afterTaxIncome) {
+	public void setAfterTaxIncome(double afterTaxIncome) {
 		this.afterTaxIncome = afterTaxIncome;
 	}
 
