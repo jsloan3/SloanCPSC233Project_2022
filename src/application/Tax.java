@@ -5,6 +5,10 @@ public class Tax {
 	private double beforeTaxIncome;
 	private double afterTaxIncome;
 	
+	public Tax (double income) {
+		this.setBeforeTaxIncome(income);
+	}
+	
 	
 	private double getBeforeTaxIncome() {
 		return beforeTaxIncome;
