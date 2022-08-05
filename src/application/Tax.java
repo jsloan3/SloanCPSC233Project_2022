@@ -4,11 +4,11 @@ public class Tax {
 	
 	private double beforeTaxIncome;
 	private double afterTaxIncome;
+	private String province;
 	
-	public Tax (double income) {
-		this.setBeforeTaxIncome(income);
+	public Tax (String residence) {
+		this.setProvince(residence);
 	}
-	
 	
 	private double getBeforeTaxIncome() {
 		return beforeTaxIncome;
@@ -21,6 +21,9 @@ public class Tax {
 	}
 	private void setAfterTaxIncome(double afterTaxIncome) {
 		this.afterTaxIncome = afterTaxIncome;
+	}
+	private void setProvince(String residence) {
+		this.province = residence;
 	}
 
 }
