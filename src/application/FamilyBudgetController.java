@@ -20,6 +20,9 @@ public class FamilyBudgetController {
 	private VBox scrollVBox;
 	
 	@FXML
+	private Label errorLabel;
+	
+	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
 		String familyMemberAmountStr = familyAmountTextbox.getText();
 		boolean isError = false;
@@ -31,11 +34,14 @@ public class FamilyBudgetController {
 		}
 		System.out.print(isError);
 		if (!isError) {
+			scrollVBox.getChildren().clear();
 			int familyMemberAmount = Integer.parseInt(familyMemberAmountStr);
 			for (int i = 0; i < familyMemberAmount; i++) {
 				Person currentPerson = new Person();
 				scrollVBox.getChildren().add(currentPerson.createHBoxField());
-			}
+			} 
+		} else {
+			errorLabel.setText("ERROR: Invalid Family Member # input: " + familyMemberAmountStr + ". Should be an integer.");
 		}
 	}
 
