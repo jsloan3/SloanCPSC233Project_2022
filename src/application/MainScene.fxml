@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
 
 <VBox prefHeight="236.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
    <children>
@@ -29,6 +31,13 @@
                </HBox.margin>
             </Label>
             <ChoiceBox prefWidth="150.0">
+            	<items>
+            		<FXCollections fx:factory="observableArrayList">
+            			<String fx:value="Alberta" />
+            			<String fx:value="British Columbia" />
+            			<String fx:value="Saskatchewan" />
+            		</FXCollections>
+            	</items>
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -42,7 +51,7 @@
       </HBox>
       <ScrollPane prefHeight="154.0" prefWidth="601.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="100.0" fx:id="scrollVBox" />
+            <VBox fx:id="scrollVBox" prefHeight="200.0" prefWidth="550.0" />
          </content>
       </ScrollPane>
       <Button mnemonicParsing="false" text="Calculate">
@@ -50,6 +59,11 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </Button>
+      <Label textFill="RED">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </Label>
       <Label text="Family Total Annual Income: -----">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
