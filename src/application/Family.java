@@ -10,11 +10,15 @@ public class Family {
 		this.clearPeopleList();
 	}
 	
-	private void clearPeopleList() {
+	public void clearPeopleList() {
 		this.setPeopleList(new ArrayList<Person>());
 	}
+	
+	public void addPersonToFamily(Person currentPerson) {
+		this.getPeopleList().add(currentPerson);
+	}
 
-	private ArrayList<Person> getPeopleList() {
+	ArrayList<Person> getPeopleList() {
 		return peopleList;
 	}
 

@@ -30,6 +30,7 @@ public class Person {
 	}
 	
 	public String processInput() {
+		System.out.print("apple");
 		String nameStr;
 		String incomeStr;
 		if (this.getNameTextfield() != null && this.getIncomeTextfield() != null
@@ -46,7 +47,10 @@ public class Person {
 		}
 		int decimalCount = 0;
 		for (int r = 0 ; r < incomeStr.length(); r++) {
-			if (decimalCount < 1) {
+			if (incomeStr.endsWith(".")) {
+				return "ERROR: Income shouldn't end with a decimal.";
+			}
+			if (decimalCount > 1) {
 				return "ERROR: Too many decimals.";
 			}
 			if (!Character.isDigit(incomeStr.charAt(r))) {
@@ -60,7 +64,10 @@ public class Person {
 		}
 		
 		this.setName(nameStr);
-		this.setBeforeTaxIncome(Integer.parseInt(incomeStr));
+		this.setBeforeTaxIncome(Double.parseDouble(incomeStr));
+		
+		System.out.print(this.getName());
+		System.out.print(this.getBeforeTaxIncome());
 		
 		return "";
 		

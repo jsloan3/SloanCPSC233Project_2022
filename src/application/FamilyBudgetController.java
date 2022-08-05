@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class FamilyBudgetController {
 	Stage mainStage;
+	Family mainFamily = new Family();
 	
 	@FXML
 	private TextField familyAmountTextbox;
@@ -24,6 +25,7 @@ public class FamilyBudgetController {
 	
 	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
+		mainFamily.clearPeopleList();
 		String familyMemberAmountStr = familyAmountTextbox.getText();
 		boolean isError = false;
 		for (int i = 0; i < familyMemberAmountStr.length(); i++) {
@@ -39,9 +41,23 @@ public class FamilyBudgetController {
 			for (int i = 0; i < familyMemberAmount; i++) {
 				Person currentPerson = new Person();
 				scrollVBox.getChildren().add(currentPerson.createHBoxField());
+				mainFamily.addPersonToFamily(currentPerson);
 			} 
 		} else {
 			errorLabel.setText("ERROR: Invalid Family Member # input: " + familyMemberAmountStr + ". Should be an integer.");
+		}
+	}
+	
+	@FXML
+	void calculateTaxes(ActionEvent calculateTaxesEvent) {
+		errorLabel.setText("");
+		for (int i = 0 ; i < mainFamily.getPeopleList().size() ; i++) {
+			String errorMessage = "";
+			errorMessage = errorMessage + mainFamily.getPeopleList().get(i).processInput();
+			if (!(errorMessage == "")) {
+				errorLabel.setText(errorMessage);
+				break;
+			}
 		}
 	}
 
