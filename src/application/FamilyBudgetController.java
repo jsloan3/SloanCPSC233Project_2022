@@ -24,6 +24,9 @@ public class FamilyBudgetController {
 	private Label errorLabel;
 	
 	@FXML
+	private ChoiceBox<String> provinceChoiceBox;
+	
+	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
 		mainFamily.clearPeopleList();
 		String familyMemberAmountStr = familyAmountTextbox.getText();
@@ -50,15 +53,25 @@ public class FamilyBudgetController {
 	
 	@FXML
 	void calculateTaxes(ActionEvent calculateTaxesEvent) {
+		double totalAfterTaxes = 0;
 		errorLabel.setText("");
 		for (int i = 0 ; i < mainFamily.getPeopleList().size() ; i++) {
 			String errorMessage = "";
+			mainFamily.getPeopleList().get(i).setTaxProvince(provinceChoiceBox.getValue());
 			errorMessage = errorMessage + mainFamily.getPeopleList().get(i).processInput();
 			if (!(errorMessage == "")) {
 				errorLabel.setText(errorMessage);
-				break;
+				return;
 			}
+			
+			double taxDue = mainFamily.getPeopleList().get(i).getTaxes().calculateTaxDue();
+			mainFamily.getPeopleList().get(i).getTaxes().setAfterTaxIncome(mainFamily.getPeopleList().get(i).getTaxes().getBeforeTaxIncome() - taxDue);
+			System.out.print(" " + mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome());
+			totalAfterTaxes += mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome();
+			
+			
 		}
+		
 	}
 
 }
