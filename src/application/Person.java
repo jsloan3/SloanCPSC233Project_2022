@@ -75,15 +75,15 @@ public class Person {
 
 	
 	public int setTaxProvince(String residence) {
-		if (residence == "Alberta") {
+		if (residence.equals("Alberta")) {
 			this.setTaxes(new AlbertaTax());
 			return 1;
 		}
 		if (residence.equals("British Columbia")) {
-			this.taxes = new BCTax();
+			this.setTaxes(new BCTax());
 		}
 		if (residence.equals("Saskatchewan")) {
-			this.taxes = new SasTax();
+			this.setTaxes(new SasTax());
 		}
 		return 0;
 	}

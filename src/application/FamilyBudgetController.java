@@ -15,6 +15,9 @@ public class FamilyBudgetController {
 	Family mainFamily = new Family();
 	
 	@FXML
+	private Label totalLabel;
+	
+	@FXML
 	private TextField familyAmountTextbox;
 	
 	@FXML
@@ -28,6 +31,7 @@ public class FamilyBudgetController {
 	
 	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
+		System.out.print(provinceChoiceBox.getValue());
 		mainFamily.clearPeopleList();
 		String familyMemberAmountStr = familyAmountTextbox.getText();
 		boolean isError = false;
@@ -68,10 +72,9 @@ public class FamilyBudgetController {
 			mainFamily.getPeopleList().get(i).getTaxes().setAfterTaxIncome(mainFamily.getPeopleList().get(i).getTaxes().getBeforeTaxIncome() - taxDue);
 			System.out.print(" " + mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome());
 			totalAfterTaxes += mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome();
-			
-			
 		}
 		
+		totalLabel.setText(String.format("Family Total Annual Income: $%.2f", totalAfterTaxes));
 	}
 
 }

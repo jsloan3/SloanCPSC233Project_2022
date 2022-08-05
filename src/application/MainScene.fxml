@@ -30,7 +30,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0" fx:id="provinceChoiceBox">
+            <ChoiceBox prefWidth="150.0" fx:id="provinceChoiceBox" value="Alberta">
             	<items>
             		<FXCollections fx:factory="observableArrayList">
             			<String fx:value="Alberta" />
@@ -64,7 +64,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <Label text="Family Total Annual Income: -----">
+      <Label text="Family Total Annual Income: -----" fx:id="totalLabel">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
