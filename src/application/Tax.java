@@ -10,7 +10,7 @@ public class Tax {
 	}
 	
 	
-	private double calculateAfterTaxIncome() {
+	public double calculateAfterTaxIncome() {
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();
 		double totalTaxes = 0;
@@ -39,6 +39,10 @@ public class Tax {
 			totalTaxes += btIncome * 0.15;
 			}
 		return totalTaxes;
+	}
+	
+	public void calculateAndSet() {
+		setAfterTaxIncome(calculateAfterTaxIncome());
 	}
 	
 	public double getBeforeTaxIncome() {
