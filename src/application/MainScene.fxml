@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="236.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="236.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
    <children>
       <HBox prefHeight="44.0" prefWidth="601.0">
          <children>
-            <Label fx:id="familyAmountTextbox" text="# of Family Members: ">
+            <Label text="# of Family Members: ">
                <opaqueInsets>
                   <Insets left="10.0" />
                </opaqueInsets>
@@ -18,7 +18,7 @@
                   <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <TextField>
+            <TextField fx:id="familyAmountTextbox">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -33,7 +33,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </ChoiceBox>
-            <Button fx:id="doneButton" mnemonicParsing="false" text="Done">
+            <Button fx:id="doneButton" mnemonicParsing="false" onAction="#getFamilyMembers" text="Done">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -42,7 +42,7 @@
       </HBox>
       <ScrollPane prefHeight="154.0" prefWidth="601.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0" fx:id="scrollVBox" />
          </content>
       </ScrollPane>
       <Button mnemonicParsing="false" text="Calculate">

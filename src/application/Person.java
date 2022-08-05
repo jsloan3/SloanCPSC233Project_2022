@@ -16,7 +16,7 @@ public class Person {
 		
 	}
 	
-	private HBox createHBoxField() {
+	public HBox createHBoxField() {
 		HBox currentHBox = new HBox();
 		TextField currentTextfield = new TextField();
 		currentHBox.getChildren().add(currentTextfield);

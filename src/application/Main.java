@@ -15,7 +15,9 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			VBox root = loader.load(new FileInputStream("src/application/MainScene.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root);
+			FamilyBudgetController controller = (FamilyBudgetController)loader.getController();
+			controller.mainStage = primaryStage;
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -26,4 +28,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	
 }
