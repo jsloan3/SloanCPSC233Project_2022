@@ -30,7 +30,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0">
+            <ChoiceBox prefWidth="150.0" fx:id="provinceChoiceBox">
             	<items>
             		<FXCollections fx:factory="observableArrayList">
             			<String fx:value="Alberta" />
