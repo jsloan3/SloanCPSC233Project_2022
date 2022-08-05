@@ -11,7 +11,9 @@ public class Person {
 	}
 	
 	private void setTaxProvince(String residence) {
-		this.taxes = new Tax(residence);
+		if (residence.equals("Alberta")) {
+			this.taxes = new AlbertaTax();
+		}
 	}
 
 	private String getName() {
