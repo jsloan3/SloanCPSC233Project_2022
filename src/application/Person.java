@@ -24,10 +24,48 @@ public class Person {
 		this.setIncomeTextfield(new TextField());
 		this.setNameTextfield(new TextField());
 		nameLabel.setText("   Name:   ");
-		incomeLabel.setText("   Annual Income:  ");
+		incomeLabel.setText("   Annual Income:   ");
 		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield());
 		return currentHBox;
 	}
+	
+	public String processInput() {
+		String nameStr;
+		String incomeStr;
+		if (this.getNameTextfield() != null && this.getIncomeTextfield() != null
+				&& this.getNameTextfield().getText() != "" && this.getIncomeTextfield().getText() != "") {
+		nameStr = this.getNameTextfield().getText();
+		incomeStr = this.getIncomeTextfield().getText();
+		} else {
+			return "ERROR: One or more fields are empty.";
+		}
+		for (int i = 0 ; i < nameStr.length() ; i++) {
+			if (!Character.isAlphabetic(nameStr.charAt(i))) {
+				return "ERROR: " + nameStr + " is not a valid name. Must be letters only.";
+			}
+		}
+		int decimalCount = 0;
+		for (int r = 0 ; r < incomeStr.length(); r++) {
+			if (decimalCount < 1) {
+				return "ERROR: Too many decimals.";
+			}
+			if (!Character.isDigit(incomeStr.charAt(r))) {
+				if (incomeStr.charAt(r) == '.') {
+					decimalCount++;
+				} else {
+					return "ERROR: " + incomeStr + " is not a valid income amount. "
+							+ "Must be digits only, and at most one decimal.";
+				}
+			}
+		}
+		
+		this.setName(nameStr);
+		this.setBeforeTaxIncome(Integer.parseInt(incomeStr));
+		
+		return "";
+		
+	}
+
 	
 	private int setTaxProvince(String residence) {
 		if (residence.equals("Alberta")) {
@@ -60,5 +98,13 @@ public class Person {
 
 	private void setNameTextfield(TextField nameTextfield) {
 		this.nameTextfield = nameTextfield;
+	}
+
+	private double getBeforeTaxIncome() {
+		return beforeTaxIncome;
+	}
+
+	private void setBeforeTaxIncome(double beforeTaxIncome) {
+		this.beforeTaxIncome = beforeTaxIncome;
 	}
 }
