@@ -12,6 +12,7 @@ public class Person {
 	
 	private TextField nameTextfield;
 	private TextField incomeTextfield;
+	private TextField expensesTextfield;
 
 	public Person() {
 
@@ -30,14 +31,17 @@ public class Person {
 		HBox currentHBox = new HBox();
 		Label nameLabel = new Label();
 		Label incomeLabel = new Label();
+		Label expenseLabel = new Label();
 		// New textfields are made for both the object's income and name textfield vars.
 		this.setIncomeTextfield(new TextField());
 		this.setNameTextfield(new TextField());
+		this.setExpensesTextfield(new TextField());
 		// We set the labels for each to something appropriate.
 		nameLabel.setText("   Name:   ");
 		incomeLabel.setText("   Annual Income:   ");
+		expenseLabel.setText("    Monthly Expenses:    ");
 		// Set them to the HBox's children in correct order.
-		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield());
+		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield(), expenseLabel, this.getExpensesTextfield());
 		// Return the HBox, now with all the textfields and labels as its children.
 		return currentHBox;
 	}
@@ -211,5 +215,15 @@ public class Person {
 	
 	public void setTaxes(Tax taxes) {
 		this.taxes = taxes;
+	}
+
+
+	public TextField getExpensesTextfield() {
+		return expensesTextfield;
+	}
+
+
+	public void setExpensesTextfield(TextField expensesTextfield) {
+		this.expensesTextfield = expensesTextfield;
 	}
 }
