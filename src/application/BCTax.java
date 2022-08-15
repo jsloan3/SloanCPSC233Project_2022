@@ -53,7 +53,7 @@ public class BCTax extends Tax {
 		if (btIncome <= currentBracket) {
 			totalTaxes += btIncome * 0.0506;
 			}
-		return totalTaxes + super.calculateTaxDue();
+		return totalTaxes + calculateFedTax();
 	}
 	
 

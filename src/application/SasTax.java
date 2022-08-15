@@ -32,7 +32,7 @@ public class SasTax extends Tax {
 		if (btIncome <= currentBracket) {
 			totalTaxes += btIncome * 0.105;
 			}
-		return totalTaxes + super.calculateTaxDue();
+		return totalTaxes + calculateFedTax();
 	}
 	
 

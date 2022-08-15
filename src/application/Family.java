@@ -10,12 +10,37 @@ public class Family {
 		this.clearPeopleList();
 	}
 	
+	public String checkFamilyAmount(String familyMemberAmountStr) {
+		boolean isError = false;
+		for (int i = 0; i < familyMemberAmountStr.length(); i++) {
+			if (!Character.isDigit(familyMemberAmountStr.charAt(i))) {
+				isError = true;
+				break;
+			}
+		}
+		
+		if (!isError) {
+			return "";
+		} else {
+			return "ERROR: Invalid Family Member # input: " + familyMemberAmountStr + ". Should be an integer.";
+		}
+	}
+	
 	/** 
 	 * Creates a fresh new ArrayList and uses a setter method to replace the old peopleList.
 	 */
 	public void clearPeopleList() {
 		this.setPeopleList(new ArrayList<Person>());
 	}
+	
+	public double getFamilyAfterTaxesIncome() {
+		double totalAfterTaxes = 0.0;
+		for (int i = 0; i < this.getPeopleList().size(); i++) {
+			totalAfterTaxes += this.getPeopleList().get(i).getTaxes().getAfterTaxIncome();
+			}
+		return totalAfterTaxes;
+		}
+
 	
 	/**
 	 * Adds a new person onto the family, at the end of the ArrayList.

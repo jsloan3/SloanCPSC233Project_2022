@@ -45,7 +45,7 @@ public class AlbertaTax extends Tax {
 			totalTaxes += btIncome * 0.10;
 			}
 		// Return our provincial taxes due, but also call upon the Parent method to get our federal taxes due.
-		return totalTaxes + super.calculateTaxDue();
+		return totalTaxes + calculateFedTax();
 	}
 	
 
