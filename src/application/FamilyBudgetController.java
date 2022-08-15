@@ -75,8 +75,6 @@ public class FamilyBudgetController {
 		}
 		
 		totalAfterTaxes = mainFamily.getFamilyAfterTaxesIncome();
-		System.out.print(mainFamily.getFamilyAfterTaxesIncome());
-		
 		// Return the total family's after tax income as a formatted string to the user by setting a label.
 		totalLabel.setText(String.format("Family Total Annual Income: $%.2f", totalAfterTaxes));
 	}
