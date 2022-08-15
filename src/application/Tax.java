@@ -1,6 +1,6 @@
 package application;
 
-public class Tax {
+public abstract class Tax {
 	
 	private double beforeTaxIncome;
 	private double afterTaxIncome;
