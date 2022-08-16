@@ -19,6 +19,18 @@ public class FamilyBudgetController {
 	private Label totalLabel;
 	
 	@FXML
+	private Label taxDueLabel;
+	
+	@FXML
+	private Label totalExpensesLabel;
+	
+	@FXML
+	private Label savingsLabel;
+	
+	@FXML
+	private Label beforeTaxLabel;
+	
+	@FXML
 	private TextField familyAmountTextbox;
 	
 	@FXML
