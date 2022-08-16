@@ -39,7 +39,31 @@ public class Family {
 			totalAfterTaxes += this.getPeopleList().get(i).getTaxes().getAfterTaxIncome();
 			}
 		return totalAfterTaxes;
-		}
+	}
+	
+	public double getFamilyBeforeTaxesIncome() {
+		double beforeTaxes = 0.0;
+		for (int i = 0; i < this.getPeopleList().size(); i++) {
+			beforeTaxes += this.getPeopleList().get(i).getBeforeTaxIncome();
+			}
+		return beforeTaxes;
+	}
+	
+	public double getFamilyTaxesDue() {
+		return this.getFamilyBeforeTaxesIncome() - this.getFamilyAfterTaxesIncome();
+	}
+	
+	public double getFamilyYearlyExpenses() {
+		double yearlyExpenses = 0.0;
+		for (int i = 0; i < this.getPeopleList().size(); i++) {
+			yearlyExpenses += this.getPeopleList().get(i).getYearlyExpenses();
+			}
+		return yearlyExpenses;
+	}
+	
+	public double getFamilySavings() {
+		return this.getFamilyAfterTaxesIncome() - this.getFamilyYearlyExpenses();
+	}
 
 	
 	/**
