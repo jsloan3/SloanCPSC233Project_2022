@@ -67,6 +67,10 @@ public class FamilyBudgetController {
 	void calculateTaxes(ActionEvent calculateTaxesEvent) {
 		// Initialize our total to 0 to begin.
 		double totalAfterTaxes = 0;
+		double totalBeforeTaxes = 0;
+		double totalExpenses = 0;
+		double totalSavings = 0;
+		double totalTaxesDue = 0;
 		// Make sure there's no error left over.
 		errorLabel.setText("");
 		for (int i = 0 ; i < mainFamily.getPeopleList().size() ; i++) {
@@ -87,8 +91,16 @@ public class FamilyBudgetController {
 		}
 		
 		totalAfterTaxes = mainFamily.getFamilyAfterTaxesIncome();
+		totalBeforeTaxes = mainFamily.getFamilyBeforeTaxesIncome();
+		totalExpenses = mainFamily.getFamilyYearlyExpenses();
+		totalTaxesDue = mainFamily.getFamilyTaxesDue();
+		totalSavings = mainFamily.getFamilySavings();
 		// Return the total family's after tax income as a formatted string to the user by setting a label.
 		totalLabel.setText(String.format("Family Total Annual Income: $%.2f", totalAfterTaxes));
+		taxDueLabel.setText(String.format("Total Annual Taxes Due: $%.2f", totalTaxesDue));
+		totalExpensesLabel.setText(String.format("Total Annual Expenses: $%.2f", totalExpenses));
+		savingsLabel.setText(String.format("Family Total Savings After Expenses: $%.2f", totalSavings));
+		beforeTaxLabel.setText(String.format("Family Before-Tax Income: $%.2f", totalBeforeTaxes));
 	}
 
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.collections.FXCollections?>
 
-<VBox prefHeight="236.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
+<VBox prefHeight="350.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
    <children>
       <HBox prefHeight="44.0" prefWidth="601.0">
          <children>
@@ -49,9 +49,9 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane prefHeight="154.0" prefWidth="601.0">
+      <ScrollPane prefHeight="252.0" prefWidth="800.0">
          <content>
-            <VBox fx:id="scrollVBox" prefHeight="200.0" prefWidth="794.0" />
+            <VBox fx:id="scrollVBox" prefHeight="227.0" prefWidth="794.0" />
          </content>
       </ScrollPane>
       <HBox prefHeight="25.0" prefWidth="601.0">
@@ -68,22 +68,19 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="17.0" prefWidth="782.0">
          <children>
-            <Label text="Family Before-Tax Income:" fx:id="beforeTaxLabel">
-               <padding>
-                  <Insets right="90.0" />
-               </padding>
-            </Label>
-            <Label text="Total Annual Taxes Due:" fx:id="taxDueLabel">
+            <Label fx:id="beforeTaxLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Family Before-Tax Income:" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <padding>
-                  <Insets right="90.0" />
-               </padding>
             </Label>
-            <Label fx:id="totalLabel" text="Family Total Annual Income:">
+            <Label fx:id="taxDueLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Total Annual Taxes Due:">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="totalLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Family Total Annual Income:">
                <HBox.margin>
                   <Insets right="90.0" />
                </HBox.margin>
@@ -95,12 +92,12 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Total Annual Expenses:" fx:id="totalExpensesLabel">
+            <Label fx:id="totalExpensesLabel" text="Total Annual Expenses:">
                <padding>
                   <Insets right="90.0" />
                </padding>
             </Label>
-            <Label text="Family Total Savings After Expenses:" fx:id="savingsLabel">
+            <Label fx:id="savingsLabel" text="Family Total Savings After Expenses:">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin>
