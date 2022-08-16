@@ -9,9 +9,11 @@ public class Person {
 	private double beforeTaxIncome;
 	private String name;
 	private Tax taxes;
+	private double yearlyExpenses;
 	
 	private TextField nameTextfield;
 	private TextField incomeTextfield;
+	private TextField expensesTextfield;
 
 	public Person() {
 
@@ -30,14 +32,17 @@ public class Person {
 		HBox currentHBox = new HBox();
 		Label nameLabel = new Label();
 		Label incomeLabel = new Label();
+		Label expenseLabel = new Label();
 		// New textfields are made for both the object's income and name textfield vars.
 		this.setIncomeTextfield(new TextField());
 		this.setNameTextfield(new TextField());
+		this.setExpensesTextfield(new TextField());
 		// We set the labels for each to something appropriate.
 		nameLabel.setText("   Name:   ");
 		incomeLabel.setText("   Annual Income:   ");
+		expenseLabel.setText("    Monthly Expenses:    ");
 		// Set them to the HBox's children in correct order.
-		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield());
+		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield(), expenseLabel, this.getExpensesTextfield());
 		// Return the HBox, now with all the textfields and labels as its children.
 		return currentHBox;
 	}
@@ -53,6 +58,7 @@ public class Person {
 	public String processInput() {
 		String nameStr;
 		String incomeStr;
+		String expenseStr;
 		
 		/*
 		 * Bad input checker. If input is an empty string or simply null, don't let it .getText()
@@ -60,9 +66,11 @@ public class Person {
 		 * tells the user what went wrong.
 		 */
 		if (this.getNameTextfield() != null && this.getIncomeTextfield() != null
-				&& this.getNameTextfield().getText() != "" && this.getIncomeTextfield().getText() != "") {
+				&& this.getNameTextfield().getText() != "" && this.getIncomeTextfield().getText() != ""
+				&& this.getExpensesTextfield() != null && this.getExpensesTextfield().getText() != "") {
 		nameStr = this.getNameTextfield().getText();
 		incomeStr = this.getIncomeTextfield().getText();
+		expenseStr = this.getExpensesTextfield().getText();
 		} else {
 			return "ERROR: One or more fields are empty.";
 		}
@@ -83,7 +91,7 @@ public class Person {
 			}
 			// If we've got more than 1 decimal its not a good input.
 			if (decimalCount > 1) {
-				return "ERROR: Too many decimals.";
+				return "ERROR: Too many decimals within income.";
 			}
 			// If the current character isn't a digit, the user didn't pass through a number.
 			if (!Character.isDigit(incomeStr.charAt(r))) {
@@ -98,11 +106,35 @@ public class Person {
 			}
 		}
 		
+		for (int r = 0 ; r < expenseStr.length(); r++) {
+			// Numbers should never end with a decimal, so error if it does.
+			if (expenseStr.endsWith(".")) {
+				return "ERROR: Expenses shouldn't end with a decimal.";
+			}
+			// If we've got more than 1 decimal its not a good input.
+			if (decimalCount > 1) {
+				return "ERROR: Too many decimals within expenses.";
+			}
+			// If the current character isn't a digit, the user didn't pass through a number.
+			if (!Character.isDigit(expenseStr.charAt(r))) {
+				// If the current character is a decimal, add to the decimal count.
+				if (expenseStr.charAt(r) == '.') {
+					decimalCount++;
+				// In the case that there's a non-digit character, error and tell the user.
+				} else {
+					return "ERROR: " + expenseStr + " is not a valid expense amount. "
+							+ "Must be digits only, and at most one decimal.";
+				}
+			}
+		}
+		
+		
 		/* We should only be here if there's no errors and everything's been error-checked, so we can freely set 
 		 * our instance variables without worrying. 
 		 */
 		this.setName(nameStr);
 		this.setBeforeTaxIncome(Double.parseDouble(incomeStr));
+		this.setYearlyExpenses(Double.parseDouble(expenseStr) * 12.0);
 		// Set our tax instance object's beforeTaxIncome to our error-checked income, too.
 		this.getTaxes().setBeforeTaxIncome(Double.parseDouble(incomeStr));
 		
@@ -195,6 +227,10 @@ public class Person {
 		this.beforeTaxIncome = beforeTaxIncome;
 	}
 	
+	public double getBeforeTaxIncome() {
+		return this.beforeTaxIncome;
+	}
+	
 	/**
 	 * taxes getter method
 	 * @return taxes
@@ -211,5 +247,25 @@ public class Person {
 	
 	public void setTaxes(Tax taxes) {
 		this.taxes = taxes;
+	}
+
+
+	public TextField getExpensesTextfield() {
+		return expensesTextfield;
+	}
+
+
+	public void setExpensesTextfield(TextField expensesTextfield) {
+		this.expensesTextfield = expensesTextfield;
+	}
+
+
+	public double getYearlyExpenses() {
+		return yearlyExpenses;
+	}
+
+
+	public void setYearlyExpenses(double monthlyExpenses) {
+		this.yearlyExpenses = monthlyExpenses;
 	}
 }

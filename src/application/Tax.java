@@ -1,6 +1,6 @@
 package application;
 
-public class Tax {
+public abstract class Tax {
 	
 	private double beforeTaxIncome;
 	private double afterTaxIncome;
@@ -14,7 +14,12 @@ public class Tax {
 	 * Returns the taxes due based on the beforeTaxIncome variable.
 	 * @return The amount of taxes due as a double.
 	 */
+	
 	public double calculateTaxDue() {
+		return 0;
+	}
+	
+	public double calculateFedTax() {
 		// btIncome will be equal to our beforeTaxIncome var.
 		double btIncome = 0;
 		btIncome += this.getBeforeTaxIncome();
@@ -54,6 +59,13 @@ public class Tax {
 			}
 		// Return the total amount due.
 		return totalTaxes;
+	}
+	
+	public void calcAndSetTax() {
+		double taxDue = this.calculateTaxDue();
+		double beforeTax;
+		beforeTax =+ this.getBeforeTaxIncome();
+		this.setAfterTaxIncome(beforeTax - taxDue);
 	}
 	
 	/**

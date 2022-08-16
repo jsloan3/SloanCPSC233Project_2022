@@ -19,6 +19,18 @@ public class FamilyBudgetController {
 	private Label totalLabel;
 	
 	@FXML
+	private Label taxDueLabel;
+	
+	@FXML
+	private Label totalExpensesLabel;
+	
+	@FXML
+	private Label savingsLabel;
+	
+	@FXML
+	private Label beforeTaxLabel;
+	
+	@FXML
 	private TextField familyAmountTextbox;
 	
 	@FXML
@@ -33,45 +45,21 @@ public class FamilyBudgetController {
 	// This controller method is called when the 'Done' button is pressed.
 	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
-		// First, clear the mainFamily object to stop any stowaway People objects from earlier.
-		mainFamily.clearPeopleList();
-		// Temporary variable for error checking purposes.
-		String familyMemberAmountStr = familyAmountTextbox.getText();
-		// Initialize the error boolean as false to start off.
-		boolean isError = false;
-		
-		/*
-		 * The family member amount should be an integer, so if the user put in anything but digits
-		 * we should throw an error. A for loop that cycles through every character makes this easy
-		 * to check.
-		 */
-		for (int i = 0; i < familyMemberAmountStr.length(); i++) {
-			if (!Character.isDigit(familyMemberAmountStr.charAt(i))) {
-				isError = true;
-				break;
-			}
-		}
-		
-		// If there's no error, we can continue.
-		if (!isError) {
-			// Clear out the VBox within the scrollpane so that we don't add to what's there.
-			scrollVBox.getChildren().clear();
-			// We can parse the user input to an int now that we know its error-free.
-			int familyMemberAmount = Integer.parseInt(familyMemberAmountStr);
-			/*
-			 * We want to create as many Person objects and add their HBoxes to the scrollpane
-			 * as the user inputed. Furthermore, each new Person object should be added to the 
-			 * Family ArrayList object.
-			 */
-			for (int i = 0; i < familyMemberAmount; i++) {
-				Person currentPerson = new Person();
-				scrollVBox.getChildren().add(currentPerson.createHBoxField());
-				mainFamily.addPersonToFamily(currentPerson);
-			} 
-			// Otherwise, throw the user an error if they inputed something wrong.
-		} else {
-			errorLabel.setText("ERROR: Invalid Family Member # input: " + familyMemberAmountStr + ". Should be an integer.");
-		}
+				mainFamily.clearPeopleList();
+				String familyMemberAmountStr = familyAmountTextbox.getText();
+				String errorMessage = mainFamily.checkFamilyAmount(familyMemberAmountStr);
+
+				if (errorMessage == "") {
+					scrollVBox.getChildren().clear();
+					int familyMemberAmount = Integer.parseInt(familyMemberAmountStr);
+					for (int i = 0; i < familyMemberAmount; i++) {
+						Person currentPerson = new Person();
+						scrollVBox.getChildren().add(currentPerson.createHBoxField());
+						mainFamily.addPersonToFamily(currentPerson);
+					} 
+				} else {
+					errorLabel.setText(errorMessage);
+				}
 	}
 	
 	@FXML
@@ -79,6 +67,10 @@ public class FamilyBudgetController {
 	void calculateTaxes(ActionEvent calculateTaxesEvent) {
 		// Initialize our total to 0 to begin.
 		double totalAfterTaxes = 0;
+		double totalBeforeTaxes = 0;
+		double totalExpenses = 0;
+		double totalSavings = 0;
+		double totalTaxesDue = 0;
 		// Make sure there's no error left over.
 		errorLabel.setText("");
 		for (int i = 0 ; i < mainFamily.getPeopleList().size() ; i++) {
@@ -94,17 +86,21 @@ public class FamilyBudgetController {
 				errorLabel.setText(errorMessage);
 				return;
 			}
-			
-			// Get what a Person object owes in taxes using the calculateTaxDue() Tax method, based on their provincial subclass.
-			double taxDue = mainFamily.getPeopleList().get(i).getTaxes().calculateTaxDue();
-			// Set a person's afterTaxIncome to their beforeTaxIncome - what they owe using a setter method.
-			mainFamily.getPeopleList().get(i).getTaxes().setAfterTaxIncome(mainFamily.getPeopleList().get(i).getTaxes().getBeforeTaxIncome() - taxDue);
-			// Now that we have a People object's income after taxes, we can add it to a total for the whole family.
-			totalAfterTaxes += mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome();
+			mainFamily.getPeopleList().get(i).getTaxes().calcAndSetTax();
+			System.out.print(mainFamily.getPeopleList().get(i).getTaxes().getAfterTaxIncome());
 		}
 		
+		totalAfterTaxes = mainFamily.getFamilyAfterTaxesIncome();
+		totalBeforeTaxes = mainFamily.getFamilyBeforeTaxesIncome();
+		totalExpenses = mainFamily.getFamilyYearlyExpenses();
+		totalTaxesDue = mainFamily.getFamilyTaxesDue();
+		totalSavings = mainFamily.getFamilySavings();
 		// Return the total family's after tax income as a formatted string to the user by setting a label.
 		totalLabel.setText(String.format("Family Total Annual Income: $%.2f", totalAfterTaxes));
+		taxDueLabel.setText(String.format("Total Annual Taxes Due: $%.2f", totalTaxesDue));
+		totalExpensesLabel.setText(String.format("Total Annual Expenses: $%.2f", totalExpenses));
+		savingsLabel.setText(String.format("Family Total Savings After Expenses: $%.2f", totalSavings));
+		beforeTaxLabel.setText(String.format("Family Before-Tax Income: $%.2f", totalBeforeTaxes));
 	}
 
 }

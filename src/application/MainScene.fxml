@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.collections.FXCollections?>
 
-<VBox prefHeight="236.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
+<VBox prefHeight="350.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FamilyBudgetController">
    <children>
       <HBox prefHeight="44.0" prefWidth="601.0">
          <children>
@@ -30,7 +30,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox prefWidth="150.0" fx:id="provinceChoiceBox" value="Alberta">
+            <ChoiceBox fx:id="provinceChoiceBox" prefWidth="150.0" value="Alberta">
             	<items>
             		<FXCollections fx:factory="observableArrayList">
             			<String fx:value="Alberta" />
@@ -49,25 +49,66 @@
             </Button>
          </children>
       </HBox>
-      <ScrollPane prefHeight="154.0" prefWidth="601.0">
+      <ScrollPane prefHeight="252.0" prefWidth="800.0">
          <content>
-            <VBox fx:id="scrollVBox" prefHeight="200.0" prefWidth="550.0" />
+            <VBox fx:id="scrollVBox" prefHeight="227.0" prefWidth="794.0" />
          </content>
       </ScrollPane>
-      <Button mnemonicParsing="false" text="Calculate" onAction="#calculateTaxes">
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </VBox.margin>
-      </Button>
-      <Label textFill="RED" fx:id="errorLabel">
+      <HBox prefHeight="25.0" prefWidth="601.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#calculateTaxes" text="Calculate">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="errorLabel" textFill="RED">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <Label text="Family Total Annual Income: -----" fx:id="totalLabel">
+      <HBox prefHeight="17.0" prefWidth="782.0">
+         <children>
+            <Label fx:id="beforeTaxLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Family Before-Tax Income:" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="taxDueLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Total Annual Taxes Due:">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="totalLabel" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="250.0" text="Family Total Annual Income:">
+               <HBox.margin>
+                  <Insets right="90.0" />
+               </HBox.margin>
+            </Label>
+         </children>
          <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
-      </Label>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="totalExpensesLabel" text="Total Annual Expenses:">
+               <padding>
+                  <Insets right="90.0" />
+               </padding>
+            </Label>
+            <Label fx:id="savingsLabel" text="Family Total Savings After Expenses:">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets right="90.0" />
+               </padding>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>
