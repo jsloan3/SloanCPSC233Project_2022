@@ -1,5 +1,12 @@
 package application;
 
+/**
+ * A child class of the Tax class. Overrides the calculateTaxDue() method in order to calculate taxes based
+ * on its own provincial tax brackets. In this case, Saskatchewan.
+ * @author Jaxon Sloan
+ *
+ */
+
 public class SasTax extends Tax {
 	
 	private double beforeTaxIncome;
@@ -12,6 +19,7 @@ public class SasTax extends Tax {
 	/**
 	 * calculateTaxDue() but for Sask. tax brackets.
 	 * See calculateTaxDue() within the AlbertaTax class.
+	 * Uses the calculateFedTax() parent method to calculate federal tax brackets.
 	 * @return Provincial Sask. taxes + Federal taxes due as a double
 	 */
 	

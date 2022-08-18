@@ -10,6 +10,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The FamilyBudgetController class is the controller class, meaning it is responsible for coordinating the other classes
+ * and for setting up and gathering input from the GUI.
+ * @author Jaxon Sloan
+ *
+ */
+
 public class FamilyBudgetController {
 	Stage mainStage;
 	// We only use one family for this calculator, so we'll set it here early.
@@ -43,6 +50,14 @@ public class FamilyBudgetController {
 	private ChoiceBox<String> provinceChoiceBox;
 	
 	// This controller method is called when the 'Done' button is pressed.
+	
+	/**
+	 * ActionEvent method that is called when the 'Done' button is pressed.
+	 * This method creates a new Person object according to the amount of family members requested by
+	 * the user, and uses the PErson createHBoxField() method in order to construct the GUI and textfields
+	 * for each family member.
+	 * @param getFamilyMembersEvent
+	 */
 	@FXML
 	void getFamilyMembers(ActionEvent getFamilyMembersEvent) {
 				mainFamily.clearPeopleList();
@@ -62,6 +77,15 @@ public class FamilyBudgetController {
 				}
 	}
 	
+	/**
+	 * ActionEvent method that is called once the 'Calculate' button is pressed.
+	 * This method is meant to gather all the data inputed by the user for each family member.
+	 * After that, it uses methods within the Family and Person classes in order to calculate
+	 * total after taxes, total before taxes, total expenses, total savings andd total taxes due
+	 * all for the entire family. Furthermore, it also sets the province state of each Person object
+	 * within the family.
+	 * @param calculateTaxesEvent
+	 */
 	@FXML
 	// This controller method is called when the 'Calculate' button is pressed.
 	void calculateTaxes(ActionEvent calculateTaxesEvent) {

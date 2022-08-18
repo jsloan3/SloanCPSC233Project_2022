@@ -1,5 +1,13 @@
 package application;
 
+/**
+ * A child class of the Tax class. Overrides the calculateTaxDue() method in order to calculate taxes based
+ * on its own provincial tax brackets. In this case, British Columbia.
+ * @author Jaxon Sloan
+ *
+ */
+
+
 public class BCTax extends Tax {
 	
 	private double beforeTaxIncome;
@@ -12,6 +20,7 @@ public class BCTax extends Tax {
 	/**
 	 * calculateTaxDue() but for BC tax brackets.
 	 * See calculateTaxDue() within the AlbertaTax class.
+	 * Uses the calculateFedTax() parent method to calculate federal tax brackets.
 	 * @return Provincial BC taxes + Federal taxes due as a double
 	 */
 	

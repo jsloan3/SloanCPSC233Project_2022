@@ -4,6 +4,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * 
+ * The Person class is responsible for containing the data and doing operations on the data relating to
+ * individuals within a Family. A Person object is intended to be stored within the ArrayList of a Family object.
+ * 
+ * @author Jaxon Sloan
+ *
+ */
+
 public class Person {
 	
 	private double beforeTaxIncome;
@@ -28,22 +37,22 @@ public class Person {
 	 * @return the created HBox
 	 */
 	public HBox createHBoxField() {
-		// Create an HBox.
+		
 		HBox currentHBox = new HBox();
 		Label nameLabel = new Label();
 		Label incomeLabel = new Label();
 		Label expenseLabel = new Label();
-		// New textfields are made for both the object's income and name textfield vars.
+
 		this.setIncomeTextfield(new TextField());
 		this.setNameTextfield(new TextField());
 		this.setExpensesTextfield(new TextField());
-		// We set the labels for each to something appropriate.
+
 		nameLabel.setText("   Name:   ");
 		incomeLabel.setText("   Annual Income:   ");
 		expenseLabel.setText("    Monthly Expenses:    ");
-		// Set them to the HBox's children in correct order.
+
 		currentHBox.getChildren().addAll(nameLabel,this.getNameTextfield(),incomeLabel, this.getIncomeTextfield(), expenseLabel, this.getExpensesTextfield());
-		// Return the HBox, now with all the textfields and labels as its children.
+
 		return currentHBox;
 	}
 	
@@ -117,10 +126,8 @@ public class Person {
 			}
 			// If the current character isn't a digit, the user didn't pass through a number.
 			if (!Character.isDigit(expenseStr.charAt(r))) {
-				// If the current character is a decimal, add to the decimal count.
 				if (expenseStr.charAt(r) == '.') {
 					decimalCount++;
-				// In the case that there's a non-digit character, error and tell the user.
 				} else {
 					return "ERROR: " + expenseStr + " is not a valid expense amount. "
 							+ "Must be digits only, and at most one decimal.";
@@ -135,7 +142,6 @@ public class Person {
 		this.setName(nameStr);
 		this.setBeforeTaxIncome(Double.parseDouble(incomeStr));
 		this.setYearlyExpenses(Double.parseDouble(expenseStr) * 12.0);
-		// Set our tax instance object's beforeTaxIncome to our error-checked income, too.
 		this.getTaxes().setBeforeTaxIncome(Double.parseDouble(incomeStr));
 		
 		return "";
@@ -166,7 +172,7 @@ public class Person {
 	
 	/**
 	 * Name instance variable getter method
-	 * @return name
+	 * @return name : String
 	 */
 
 	public String getName() {
@@ -175,7 +181,7 @@ public class Person {
 	
 	/**
 	 * Name instance variable setter method
-	 * @param name
+	 * @param name : String
 	 */
 
 	public void setName(String name) {
@@ -184,7 +190,7 @@ public class Person {
 	
 	/**
 	 * incomeTextfield instance variable getter method
-	 * @return incomeTextfield
+	 * @return incomeTextfield : TextField
 	 */
 
 	public TextField getIncomeTextfield() {
@@ -193,7 +199,7 @@ public class Person {
 	
 	/**
 	 * incomeTextfield instance variable setter method
-	 * @param incomeTextfield
+	 * @param incomeTextfield : TextField
 	 */
 
 	private void setIncomeTextfield(TextField incomeTextfield) {
@@ -202,7 +208,7 @@ public class Person {
 	
 	/**
 	 * nameTextfield getter method
-	 * @return nameTextfield
+	 * @return nameTextfield : TextField
 	 */
 
 	public TextField getNameTextfield() {
@@ -211,7 +217,7 @@ public class Person {
 	
 	/**
 	 * nameTextfield setter method
-	 * @param nameTextfield
+	 * @param nameTextfield : TextField
 	 */
 
 	private void setNameTextfield(TextField nameTextfield) {
@@ -220,12 +226,17 @@ public class Person {
 	
 	/**
 	 * beforeTaxIncome setter method
-	 * @param beforeTaxIncome
+	 * @param beforeTaxIncome : double
 	 */
 
 	private void setBeforeTaxIncome(double beforeTaxIncome) {
 		this.beforeTaxIncome = beforeTaxIncome;
 	}
+	
+	/**
+	 * Simple beforeTaxIncome getter method.
+	 * @return beforeTaxIncome : double
+	 */
 	
 	public double getBeforeTaxIncome() {
 		return this.beforeTaxIncome;
@@ -233,37 +244,54 @@ public class Person {
 	
 	/**
 	 * taxes getter method
-	 * @return taxes
+	 * @return taxes : Tax
 	 */
 
 	public Tax getTaxes() {
 		return taxes;
 	}
 	
+
 	/**
-	 * taxes setter method
-	 * @param taxes
+	 * Simple tax setter method.
+	 * @param taxes : Tax
 	 */
-	
 	public void setTaxes(Tax taxes) {
 		this.taxes = taxes;
 	}
-
+	
+	/**
+	 * Returns the instance variable that stores the expenses textfield.
+	 * @return expensesTextfield : TextField
+	 */
 
 	public TextField getExpensesTextfield() {
 		return expensesTextfield;
 	}
+	
+	/** 
+	 * Simple expensesTextfield setter method.
+	 * @param expensesTextfield : TextField
+	 */
 
 
 	public void setExpensesTextfield(TextField expensesTextfield) {
 		this.expensesTextfield = expensesTextfield;
 	}
-
+	
+	/**
+	 * Simple yearlyExpenses getter method.
+	 * @return yearlyExpenses : double
+	 */
 
 	public double getYearlyExpenses() {
 		return yearlyExpenses;
 	}
-
+	
+	/**
+	 * Simple monthlyExpenses setter method.
+	 * @param monthlyExpenses : double
+	 */
 
 	public void setYearlyExpenses(double monthlyExpenses) {
 		this.yearlyExpenses = monthlyExpenses;

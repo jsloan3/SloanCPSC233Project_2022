@@ -1,5 +1,13 @@
 package application;
 
+
+/**
+ * A child class of the Tax class. Overrides the calculateTaxDue() method in order to calculate taxes based
+ * on its own provincial tax brackets. In this case, Alberta.
+ * @author Jaxon Sloan
+ *
+ */
+
 public class AlbertaTax extends Tax {
 	
 	private double beforeTaxIncome;
@@ -10,10 +18,10 @@ public class AlbertaTax extends Tax {
 	}
 	/**
 	 * Uses the same calculations from the equivalent method from AlbertaTax's parent, Tax,
-	 * but with different tax brackets. Furthermore, this will return the provincial taxes due
-	 * as well as the federal taxes due by calling on the parent method using the super keyword.
+	 * but with different tax brackets. Furthermore, this will return the provincial taxes due.
+	 * Uses the calculateFedTax() parent method to calculate federal tax brackets as well.
 	 * 
-	 * @see calculateTaxDue() in Tax
+	 * @see calculateFedTax() in Tax
 	 * @return Provincial Alberta taxes + Federal taxes due as a double
 	 */
 	public double calculateTaxDue() {

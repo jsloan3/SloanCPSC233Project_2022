@@ -1,5 +1,14 @@
 package application;
 
+/**
+ * The Tax class stores beforeTaxIncome and afterTaxIncome as doubles.
+ * It is intended to contain and do calculations based on Canadian tax brackets.
+ * This class is intended to be an Abstract class, with its main method calculateTaxDue()
+ * intended to be overridden by its children class to do calculations based on a specific province.
+ * @author Jaxon Sloan
+ *
+ */
+
 public abstract class Tax {
 	
 	private double beforeTaxIncome;
@@ -10,15 +19,20 @@ public abstract class Tax {
 	}
 	
 	/**
-	 * Calculates taxes based on 2021-2022 Canadian Federal Tax brackets.
-	 * Returns the taxes due based on the beforeTaxIncome variable.
-	 * @return The amount of taxes due as a double.
+	 * Calculates taxes based on 2021-2022 Canadian Provincial Tax brackets.
+	 * In the case of the parent Tax class, this will only ever return 0, as it is always intended to be overridden by its child classes.
+	 * @return The amount of taxes due as a double. (Always 0 for the Tax abstract class)
 	 */
 	
 	public double calculateTaxDue() {
 		return 0;
 	}
 	
+	/**
+	 * Calculates taxes based on 2021-2022 Canadian Federal Tax brackets, and returns it as a double.
+	 * Does this based on beforeTaxIncome.
+	 * @return the amount of taxes due by a Person as a double.
+	 */
 	public double calculateFedTax() {
 		// btIncome will be equal to our beforeTaxIncome var.
 		double btIncome = 0;
@@ -61,6 +75,11 @@ public abstract class Tax {
 		return totalTaxes;
 	}
 	
+	
+	/**
+	 * Calculates the taxes due using calculateTaxDue(), and subtracts it from
+	 * a Person objects beforeTaxIncome, before setting the afterTaxIncome variable appropriately.
+	 */
 	public void calcAndSetTax() {
 		double taxDue = this.calculateTaxDue();
 		double beforeTax;
